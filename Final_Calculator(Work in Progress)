@@ -6,7 +6,6 @@ ENTITY Final_Calculator IS
     PORT (
         A,B : IN STD_LOGIC_VECTOR(3 downto 0);
         OP  : IN STD_LOGIC_VECTOR(1 downto 0);
-        in_num : IN  STD_LOGIC_VECTOR(7 DOWNTO 0);
         R   : OUT STD_LOGIC_VECTOR(7 downto 0));
         HEX3   : OUT STD_LOGIC_VECTOR(6 DOWNTO 0);  -- Sign (from Sign_mux)
         HEX2   : OUT STD_LOGIC_VECTOR(6 DOWNTO 0);  -- Hundreds (from Displayer)
@@ -15,7 +14,7 @@ ENTITY Final_Calculator IS
     );
 END Final_Calculator;
 
-ARCHITECTURE Structure OF CalculatorDisplay IS
+ARCHITECTURE Structure OF Final_Calculator IS
 
     -- Component declarations
     COMPONENT signed_Calculator 
@@ -36,28 +35,24 @@ ARCHITECTURE Structure OF CalculatorDisplay IS
     END COMPONENT;
 
 BEGIN
- --not changed yet 
-    -- Sign detection
-    U1: Sign_mux
+
+-- Logic for the math
+    U1: Signed_Calculator
         PORT MAP (
-            in_num => in_num,
-            HEX3   => HEX3
+            A => A,
+            B   => B,
+            OP => OP,
+            R => R
         );
 
-    -- Absolute value conversion
+-- Displays the number from the logic 
     U2: Coverter
         PORT MAP (
-            in_num  => in_num,
-            Abs_num => abs_val
-        );
-
-    -- Decimal display
-    U3: Displayer
-        PORT MAP (
-            Abs_num => abs_val,
-            HEX2    => HEX2,
-            HEX1    => HEX1,
-            HEX0    => HEX0  -- Renamed to HEX0 to avoid conflict with Sign_mux
+            in_num => R,
+            HEX3 => HEX3,
+            HEX2 => HEX2,
+            HEX1 => HEX1,
+            HEX0 => HEX0
         );
 
 END Structure;
