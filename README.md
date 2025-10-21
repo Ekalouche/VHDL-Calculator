@@ -23,10 +23,15 @@ No reliance on abstracted libraries—every operation is manually defined for cl
 
 📁 File Structure
 ├── Signed_Calculator.vhd       # Core arithmetic logic
+
 ├── CalculatorDisplay.vhd       # Top-level integration module
+
 ├── Converter.vhd               # Signed to unsigned conversion using two’s complement
+
 ├── Displayer.vhd               # Seven-segment display logic
+
 ├── Sign_Mux.vhd                # Sign detection and routing logic
+
 
 
 👤 Project Notes
