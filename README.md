@@ -22,6 +22,7 @@ No reliance on abstracted libraries—every operation is manually defined for cl
 🧵 Modular simulation of each component using testbenches
 
 📁 File Structure
+
 ├── Signed_Calculator.vhd       # Core arithmetic logic
 
 ├── CalculatorDisplay.vhd       # Top-level integration module
